@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delicious Food Restaurant</title>
+    <link rel="stylesheet" href="./assets/css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-brand">
+                <h2>Delicious Food</h2>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="./index.html" class="nav-link">Inicio</a>
+                </li>
+                <li class="nav-item">
+                    <a href="./nosotros.html" class="nav-link">Nosotros</a>
+                </li>
+                <li class="nav-item">
+                    <a href="./servicios.html" class="nav-link">Servicios</a>
+                </li>
+                <li class="nav-item">
+                    <a href="./contacto.html" class="nav-link">Contáctanos</a>
+                </li>
+            </ul>
+            <div class="nav-buttons">
+                <button class="btn btn-secondary" id="loginBtn">Ingresar</button>
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="inicio" class="hero">
+        <div class="hero-content">
+            <h1>Bienvenidos a Delicious Food</h1>
+            <p>Una experiencia gastronómica única con los mejores sabores de la cocina internacional</p>
+            <div class="hero-buttons">
+                <button class="btn btn-primary">Reservar Mesa</button>
+                <button class="btn btn-outline">Ordenar a Domicilio</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Platos Destacados -->
+    <section class="featured-dishes">
+        <div class="container">
+            <div class="section-header">
+                <h2>Nuestros Platos Destacados</h2>
+                <p>Descubre nuestra selección de los platillos más exquisitos preparados por nuestros chefs expertos</p>
+            </div>
+            <div class="dishes-grid">
+                <div class="dish-card">
+                    <div class="dish-image">
+                        <img src="https://images.unsplash.com/photo-1546833999-b9f581a1996d?w=400&h=300&fit=crop" alt="Filete Premium">
+                    </div>
+                    <div class="dish-content">
+                        <h3>Filete Premium</h3>
+                        <p>Corte selecto de res con reducción de vino tinto y vegetales salteados</p>
+                        <button class="btn btn-outline">Ver Menú</button>
+                    </div>
+                </div>
+                <div class="dish-card">
+                    <div class="dish-image">
+                        <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?w=400&h=300&fit=crop" alt="Langostinos al Ajillo">
+                    </div>
+                    <div class="dish-content">
+                        <h3>Langostinos al Ajillo</h3>
+                        <p>Langostinos frescos salteados en mantequilla de ajo y hierbas frescas</p>
+                        <button class="btn btn-outline">Ver Menú</button>
+                    </div>
+                </div>
+                <div class="dish-card">
+                    <div class="dish-image">
+                        <img src="https://images.unsplash.com/photo-1544025162-d76694265947?w=400&h=300&fit=crop" alt="Medallón de Res">
+                    </div>
+                    <div class="dish-content">
+                        <h3>Medallón de Res</h3>
+                        <p>Medallón de res con salsa de vino tinto, acompañado de puré trufado</p>
+                        <button class="btn btn-outline">Ver Menú</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Historia -->
+    <section id="nosotros" class="history">
+        <div class="container">
+            <div class="history-content">
+                <div class="history-text">
+                    <h2>Nuestra Historia</h2>
+                    <p>En Delicious Food, nos dedicamos a brindar una experiencia culinaria excepcional desde 2025. Nuestro restaurante nació de la pasión por la gastronomía y el deseo de compartir sabores únicos con nuestros comensales.</p>
+                    <p>Cada plato que servimos es preparado con los ingredientes más frescos y técnicas culinarias refinadas que han sido perfeccionadas a lo largo de los años por nuestro talentoso equipo de chefs.</p>
+                    <button class="btn btn-primary">Conoce Más</button>
+                </div>
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <h3>15+</h3>
+                        <p>Años de experiencia</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3>30+</h3>
+                        <p>Chefs especializados</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3>100+</h3>
+                        <p>Platos en nuestro menú</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3>5000+</h3>
+                        <p>Clientes satisfechos</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Servicios -->
+    <section id="servicios" class="services">
+        <div class="container">
+            <div class="section-header">
+                <h2>Nuestros Servicios</h2>
+                <p>Ofrecemos una variedad de servicios diseñados para satisfacer todas tus necesidades culinarias</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-calendar-check"></i>
+                    </div>
+                    <h3>Reservaciones</h3>
+                    <p>Reserva tu mesa con anticipación para disfrutar de una experiencia sin contratiempos</p>
+                    <button class="btn btn-primary">Reservar Ahora</button>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-motorcycle"></i>
+                    </div>
+                    <h3>Delivery</h3>
+                    <p>Disfruta de nuestros deliciosos platos en la comodidad de tu hogar u oficina</p>
+                    <button class="btn btn-primary">Ordenar Ahora</button>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-glass-cheers"></i>
+                    </div>
+                    <h3>Eventos</h3>
+                    <p>Organizamos todo tipo de eventos, desde cenas corporativas hasta celebraciones familiares</p>
+                    <button class="btn btn-primary">Más Información</button>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-utensils"></i>
+                    </div>
+                    <h3>Catering</h3>
+                    <p>Llevamos nuestra exquisita cocina a tu evento, adaptándonos a tus necesidades</p>
+                    <button class="btn btn-primary">Cotizar</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Reserva Tu Experiencia Culinaria</h2>
+                <p>No esperes más para disfrutar de una experiencia gastronómica inolvidable. Haz tu reserva ahora y déjate sorprender por nuestros platos.</p>
+                <button class="btn btn-primary btn-large">Reservar Mesa</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contacto" class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Delicious Food</h3>
+                    <p>Disfruta de la mejor experiencia gastronómica en nuestro restaurante, donde la calidad y el sabor se encuentran en cada plato.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Navegación</h4>
+                    <ul>
+                        <li><a href="#inicio">Inicio</a></li>
+                        <li><a href="#nosotros">Nosotros</a></li>
+                        <li><a href="#servicios">Servicios</a></li>
+                        <li><a href="#contacto">Contáctanos</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Servicios</h4>
+                    <ul>
+                        <li><a href="#reservaciones">Reservaciones</a></li>
+                        <li><a href="#delivery">Delivery</a></li>
+                        <li><a href="#eventos">Eventos</a></li>
+                        <li><a href="#catering">Catering</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contacto</h4>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> Av. Principal 123, Lima</li>
+                        <li><i class="fas fa-phone"></i> +51 999 888 777</li>
+                        <li><i class="fas fa-envelope"></i> info@deliasfood.com</li>
+                        <li><i class="fas fa-clock"></i> Lun - Dom: 9:00 - 22:00</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Delicious Food. Todos los derechos reservados.</p>
+                <div class="footer-links">
+                    <a href="#">Términos y condiciones</a>
+                    <a href="#">Política de privacidad</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal de Login -->
+    <div id="loginModal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Iniciar Sesión</h2>
+                <button class="modal-close" id="closeModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form class="login-form">
+                    <div class="form-group">
+                        <label for="modalEmail">Correo Electrónico</label>
+                        <input type="email" id="modalEmail" name="email" placeholder="tu@email.com" required>
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <div class="form-group">
+                        <label for="modalPassword">Contraseña</label>
+                        <input type="password" id="modalPassword" name="password" placeholder="Tu contraseña" required>
+                        <button type="button" class="password-toggle" onclick="toggleModalPassword()">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                    </div>
+                    <div class="form-options">
+                        <label class="remember-me">
+                            <input type="checkbox" name="remember">
+                            <span>Recordarme</span>
+                        </label>
+                        <a href="auth/olvido_contrasena.html" class="forgot-link">¿Olvidaste tu contraseña?</a>
+                    </div>
+                    <button type="submit" class="submit-btn">
+                        Iniciar Sesión
+                    </button>
+                </form>
+                <div class="modal-footer">
+                    <p>¿No tienes una cuenta? <a href="auth/registrate.html" class="register-link">Regístrate aquí</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="./assets/js/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menú - Delicious Food Restaurant</title>
+    <link rel="stylesheet" href="./assets/css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-brand">
+                <h2>Delicius Food</h2>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="index.html" class="nav-link">Inicio</a>
+                </li>
+                <li class="nav-item">
+                    <a href="nosotros.html" class="nav-link">Nosotros</a>
+                </li>
+                <li class="nav-item">
+                    <a href="servicios.html" class="nav-link">Servicios</a>
+                </li>
+                <li class="nav-item">
+                    <a href="menu.html" class="nav-link active">Menú</a>
+                </li>
+                <li class="nav-item">
+                    <a href="contacto.html" class="nav-link">Contáctanos</a>
+                </li>
+            </ul>
+            <div class="nav-buttons">
+                <button class="btn btn-secondary">Ingresar</button>
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="page-hero">
+        <div class="hero-content">
+            <h1>Nuestro Menú</h1>
+            <p>Descubre nuestra selección de platos exquisitos preparados con los mejores ingredientes</p>
+        </div>
+    </section>
+
+    <!-- Filtros de Menú -->
+    <section class="menu-filters">
+        <div class="container">
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-category="todos">Todos</button>
+                <button class="filter-btn" data-category="entradas">Entradas</button>
+                <button class="filter-btn" data-category="principales">Platos Principales</button>
+                <button class="filter-btn" data-category="mariscos">Mariscos</button>
+                <button class="filter-btn" data-category="postres">Postres</button>
+                <button class="filter-btn" data-category="bebidas">Bebidas</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Menú Completo -->
+    <section class="menu-section">
+        <div class="container">
+            <!-- Entradas -->
+            <div class="menu-category" data-category="entradas">
+                <h2 class="category-title">Entradas</h2>
+                <div class="menu-grid">
+                    <div class="menu-item">
+                        <div class="menu-image">
+                            <img src="https://images.unsplash.com/photo-1546833999-b9f581a1996d?w=400&h=300&fit=crop" alt="Ceviche de Pescado">
+                        </div>
+                        <div class="menu-content">
+                            <div class="menu-header">
+                                <h3>Ceviche de Pescado</h3>
+                                <span class="price">S/ 28</span>
+                            </div>
+                            <p>Pescado fresco marinado en limón, cebolla roja, cilantro y ají limo. Acompañado de choclo y camote.</p>
+                            <div class="menu-tags">
+                                <span class="tag">Fresco</span>
+                                <span class="tag">Sin Gluten</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-image">
+                            <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?w=400&h=300&fit=crop" alt="Causa Limeña">
+                        </div>
+                        <div class="menu-content">
+                            <div class="menu-header">
+                                <h3>Causa Limeña</h3>
+                                <span class="price">S/ 22</span>
+                            </div>
+                            <p>Papa amarilla sazonada con ají amarillo, rellena de pollo deshilachado y aguacate. Decorada con huevo y aceitunas.</p>
+                            <div class="menu-tags">
+                                <span class="tag">Tradicional</span>
+                                <span class="tag">Vegetariano</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-image">
+                            <img src="https://images.unsplash.com/photo-1544025162-d76694265947?w=400&h=300&fit=crop" alt="Anticuchos de Corazón">
+                        </div>
+                        <div class="menu-content">
+                            <div class="menu-header">
+                                <h3>Anticuchos de Corazón</h3>
+                                <span class="price">S/ 25</span>
+                            </div>
+                            <p>Corazón de res marinado en ají panca y especias, asado a la parrilla. Servido con papa dorada y choclo.</p>
+                            <div class="menu-tags">
+                                <span class="tag">Parrilla</span>
+                                <span class="tag">Tradicional</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Platos Principales -->
+            <div class="menu-category" data-category="principales">
+                <h2 class="category-title">Platos Principales</h2>
+                <div class="menu-grid">
+                    <div class="menu-item">
+                        <div class="menu-image">
+                            <img src="https://images.unsplash.com/photo-1546833999-b9f581a1996d?w=400&h=300&fit=crop" alt="Lomo Saltado">
+                        </div>
+                        <div class="menu-content">
+                            <div class="menu-header">
+                                <h3>Lomo Saltado</h3>
+                                <span class="price">S/ 45</span>
+                            </div>
+                            <p>Tiras de lomo fino salteadas con cebolla, tomate y ají amarillo. Acompañado de arroz y papas fritas.</p>
+                            <div class="menu-tags">
+                                <span class="tag">Popular</span>
+                                <span class="tag">Wok</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-image">
+                            <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?w=400&h=300&fit=crop" alt="Aji de Gallina">
+                        </div>
+                        <div class="menu-content">
+                            <div class="menu-header">
+                                <h3>Aji de Gallina</h3>
+                                <span class="price">S/ 38</span>
+                            </div>
+                            <p>Gallina deshilachada en cremosa salsa de ají amarillo, leche y queso parmesano. Servido con arroz y papa amarilla.</p>
+                            <div class="menu-tags">
+                                <span class="tag">Cremoso</span>
+                                <span class="tag">Tradicional</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-image">
+                            <img src="https://images.unsplash.com/photo-1544025162-d76694265947?w=400&h=300&fit=crop" alt="Rocoto Relleno">
+                        </div>
+                        <div class="menu-content">
+                            <div class="menu-header">
+                                <h3>Rocoto Relleno</h3>
+                                <span class="price">S/ 42</span>
+                            </div>
+                            <p>Rocoto relleno de carne molida, cebolla, pasas y aceitunas. Gratinado con queso y servido con papa dorada.</p>
+                            <div class="menu-tags">
+                                <span class="tag">Picante</span>
+                                <span class="tag">Gratinado</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mariscos -->
+            <div class="menu-category" data-category="mariscos">
+                <h2 class="category-title">Mariscos</h2>
+                <div class="menu-grid">
+                    <div class="menu-item">
+                        <div class="menu-image">
+                            <img src="https://images.unsplash.com/photo-1546833999-b9f581a1996d?w=400&h=300&fit=crop" alt="Chupe de Camarones">
+                        </div>
+                        <div class="menu-content">
+                            <div class="menu-header">
+                                <h3>Chupe de Camarones</h3>
+                                <span class="price">S/ 52</span>
+                            </div>
+                            <p>Sopa cremosa de camarones con papa, choclo, huevo y queso. Un plato tradicional de la costa peruana.</p>
+                            <div class="menu-tags">
+                                <span class="tag">Sopa</span>
+                                <span class="tag">Mariscos</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-image">
+                            <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?w=400&h=300&fit=crop" alt="Arroz con Mariscos">
+                        </div>
+                        <div class="menu-content">
+                            <div class="menu-header">
+                                <h3>Arroz con Mariscos</h3>
+                                <span class="price">S/ 48</span>
+                            </div>
+                            <p>Arroz sazonado con mariscos frescos, calamares, camarones y almejas. Acompañado de salsa criolla.</p>
+                            <div class="menu-tags">
+                                <span class="tag">Arroz</span>
+                                <span class="tag">Mariscos</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-image">
+                            <img src="https://images.unsplash.com/photo-1544025162-d76694265947?w=400&h=300&fit=crop" alt="Pescado a la Chorrillana">
+                        </div>
+                        <div class="menu-content">
+                            <div class="menu-header">
+                                <h3>Pescado a la Chorrillana</h3>
+                                <span class="price">S/ 55</span>
+                            </div>
+                            <p>Filete de pescado fresco bañado en salsa de tomate, cebolla y ají amarillo. Servido con arroz y papa.</p>
+                            <div class="menu-tags">
+                                <span class="tag">Pescado</span>
+                                <span class="tag">Salsa</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Postres -->
+            <div class="menu-category" data-category="postres">
+                <h2 class="category-title">Postres</h2>
+                <div class="menu-grid">
+                    <div class="menu-item">
+                        <div class="menu-image">
+                            <img src="https://images.unsplash.com/photo-1546833999-b9f581a1996d?w=400&h=300&fit=crop" alt="Suspiro a la Limeña">
+                        </div>
+                        <div class="menu-content">
+                            <div class="menu-header">
+                                <h3>Suspiro a la Limeña</h3>
+                                <span class="price">S/ 18</span>
+                            </div>
+                            <p>Crema de leche con vino oporto, coronada con merengue italiano y espolvoreada con canela.</p>
+                            <div class="menu-tags">
+                                <span class="tag">Dulce</span>
+                                <span class="tag">Tradicional</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-image">
+                            <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?w=400&h=300&fit=crop" alt="Tres Leches">
+                        </div>
+                        <div class="menu-content">
+                            <div class="menu-header">
+                                <h3>Tres Leches</h3>
+                                <span class="price">S/ 16</span>
+                            </div>
+                            <p>Bizcocho bañado en tres tipos de leche, coronado con crema chantilly y frutas frescas.</p>
+                            <div class="menu-tags">
+                                <span class="tag">Húmedo</span>
+                                <span class="tag">Cremoso</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-image">
+                            <img src="https://images.unsplash.com/photo-1544025162-d76694265947?w=400&h=300&fit=crop" alt="Alfajor de Maicena">
+                        </div>
+                        <div class="menu-content">
+                            <div class="menu-header">
+                                <h3>Alfajor de Maicena</h3>
+                                <span class="price">S/ 14</span>
+                            </div>
+                            <p>Galletas de maicena rellenas de dulce de leche, espolvoreadas con azúcar glass.</p>
+                            <div class="menu-tags">
+                                <span class="tag">Galletas</span>
+                                <span class="tag">Dulce</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bebidas -->
+            <div class="menu-category" data-category="bebidas">
+                <h2 class="category-title">Bebidas</h2>
+                <div class="menu-grid">
+                    <div class="menu-item">
+                        <div class="menu-image">
+                            <img src="https://images.unsplash.com/photo-1546833999-b9f581a1996d?w=400&h=300&fit=crop" alt="Chicha Morada">
+                        </div>
+                        <div class="menu-content">
+                            <div class="menu-header">
+                                <h3>Chicha Morada</h3>
+                                <span class="price">S/ 8</span>
+                            </div>
+                            <p>Bebida tradicional peruana preparada con maíz morado, piña, manzana y especias.</p>
+                            <div class="menu-tags">
+                                <span class="tag">Tradicional</span>
+                                <span class="tag">Refrescante</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-image">
+                            <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?w=400&h=300&fit=crop" alt="Pisco Sour">
+                        </div>
+                        <div class="menu-content">
+                            <div class="menu-header">
+                                <h3>Pisco Sour</h3>
+                                <span class="price">S/ 22</span>
+                            </div>
+                            <p>Cóctel nacional peruano preparado con pisco, limón, jarabe de goma y clara de huevo.</p>
+                            <div class="menu-tags">
+                                <span class="tag">Cóctel</span>
+                                <span class="tag">Nacional</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-image">
+                            <img src="https://images.unsplash.com/photo-1544025162-d76694265947?w=400&h=300&fit=crop" alt="Limonada de Hierba Buena">
+                        </div>
+                        <div class="menu-content">
+                            <div class="menu-header">
+                                <h3>Limonada de Hierba Buena</h3>
+                                <span class="price">S/ 10</span>
+                            </div>
+                            <p>Limonada fresca con hierba buena, perfecta para acompañar cualquier plato.</p>
+                            <div class="menu-tags">
+                                <span class="tag">Refrescante</span>
+                                <span class="tag">Natural</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Menú del Día -->
+    <section class="daily-menu">
+        <div class="container">
+            <div class="section-header">
+                <h2>Menú del Día</h2>
+                <p>Platos especiales que cambian diariamente según la temporada</p>
+            </div>
+            <div class="daily-menu-content">
+                <div class="daily-dish">
+                    <h3>Plato Principal</h3>
+                    <p>Seco de Cordero con Frijoles</p>
+                    <span class="daily-price">S/ 35</span>
+                </div>
+                <div class="daily-dish">
+                    <h3>Entrada</h3>
+                    <p>Ensalada de Quinua</p>
+                    <span class="daily-price">S/ 18</span>
+                </div>
+                <div class="daily-dish">
+                    <h3>Postre</h3>
+                    <p>Mazamorra con Leche</p>
+                    <span class="daily-price">S/ 12</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta">
+        <div class="container">
+            <div class="cta-content">
+                <h2>¿Te Gustó Nuestro Menú?</h2>
+                <p>Reserva tu mesa ahora y disfruta de estos deliciosos platos en nuestro restaurante</p>
+                <div class="cta-buttons">
+                    <button class="btn btn-primary">Reservar Mesa</button>
+                    <button class="btn btn-outline">Ordenar Delivery</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Delicious Food</h3>
+                    <p>Disfruta de la mejor experiencia gastronómica en nuestro restaurante, donde la calidad y el sabor se encuentran en cada plato.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Navegación</h4>
+                    <ul>
+                        <li><a href="index.html">Inicio</a></li>
+                        <li><a href="nosotros.html">Nosotros</a></li>
+                        <li><a href="servicios.html">Servicios</a></li>
+                        <li><a href="menu.html">Menú</a></li>
+                        <li><a href="contacto.html">Contáctanos</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Servicios</h4>
+                    <ul>
+                        <li><a href="servicios.html#reservaciones">Reservaciones</a></li>
+                        <li><a href="servicios.html#delivery">Delivery</a></li>
+                        <li><a href="servicios.html#eventos">Eventos</a></li>
+                        <li><a href="servicios.html#catering">Catering</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contacto</h4>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> Av. Principal 123, Lima</li>
+                        <li><i class="fas fa-phone"></i> +51 999 888 777</li>
+                        <li><i class="fas fa-envelope"></i> info@deliasfood.com</li>
+                        <li><i class="fas fa-clock"></i> Lun - Dom: 9:00 - 22:00</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Delicious Food. Todos los derechos reservados.</p>
+                <div class="footer-links">
+                    <a href="#">Términos y condiciones</a>
+                    <a href="#">Política de privacidad</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="./assets/js/script.js"></script>
+</body>
+</html>

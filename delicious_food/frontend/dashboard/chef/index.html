@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Chef - Delias Food</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #f5f6fa;
+            color: #333;
+        }
+
+        .chef-container {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 280px;
+            background: linear-gradient(135deg, #ff6b6b 0%, #feca57 100%);
+            color: white;
+            padding: 20px 0;
+            position: fixed;
+            height: 100vh;
+            overflow-y: auto;
+        }
+
+        .sidebar-header {
+            text-align: center;
+            padding: 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            margin-bottom: 20px;
+        }
+
+        .sidebar-header h2 {
+            font-size: 1.5rem;
+            margin-bottom: 5px;
+        }
+
+        .sidebar-header p {
+            opacity: 0.8;
+            font-size: 0.9rem;
+        }
+
+        .nav-menu {
+            list-style: none;
+            padding: 0 20px;
+        }
+
+        .nav-item {
+            margin-bottom: 10px;
+        }
+
+        .nav-link {
+            display: flex;
+            align-items: center;
+            padding: 15px 20px;
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateX(5px);
+        }
+
+        .nav-link i {
+            margin-right: 15px;
+            width: 20px;
+            text-align: center;
+        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            margin-left: 280px;
+            padding: 20px;
+        }
+
+        .top-bar {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .page-title h1 {
+            font-size: 2rem;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .page-title p {
+            color: #666;
+        }
+
+        .kitchen-status {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .status-indicator {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 20px;
+            background: #f8f9fa;
+            border-radius: 25px;
+        }
+
+        .status-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #28a745;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+
+        /* Orders Grid */
+        .orders-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+
+        .order-card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            border-left: 4px solid #ff6b6b;
+            transition: all 0.3s ease;
+        }
+
+        .order-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .order-card.urgent {
+            border-left-color: #dc3545;
+            background: linear-gradient(135deg, #fff5f5, #fff);
+        }
+
+        .order-card.ready {
+            border-left-color: #28a745;
+        }
+
+        .order-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .order-number {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .order-time {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .order-priority {
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .priority-high {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        .priority-normal {
+            background: #d1ecf1;
+            color: #0c5460;
+        }
+
+        .order-items {
+            margin-bottom: 20px;
+        }
+
+        .order-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .order-item:last-child {
+            border-bottom: none;
+        }
+
+        .item-name {
+            font-weight: 500;
+            color: #333;
+        }
+
+        .item-quantity {
+            background: #f8f9fa;
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .order-notes {
+            background: #fff3cd;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            border-left: 4px solid #ffc107;
+        }
+
+        .order-notes h5 {
+            color: #856404;
+            margin-bottom: 5px;
+            font-size: 0.9rem;
+        }
+
+        .order-notes p {
+            color: #856404;
+            font-size: 0.9rem;
+        }
+
+        .order-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .btn-primary {
+            background: #ff6b6b;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #e55a5a;
+            transform: translateY(-2px);
+        }
+
+        .btn-success {
+            background: #28a745;
+            color: white;
+        }
+
+        .btn-success:hover {
+            background: #218838;
+            transform: translateY(-2px);
+        }
+
+        .btn-warning {
+            background: #ffc107;
+            color: #333;
+        }
+
+        .btn-warning:hover {
+            background: #e0a800;
+            transform: translateY(-2px);
+        }
+
+        /* Kitchen Stats */
+        .kitchen-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #ff6b6b, #feca57);
+        }
+
+        .stat-card h4 {
+            font-size: 2.5rem;
+            color: #ff6b6b;
+            margin-bottom: 10px;
+        }
+
+        .stat-card p {
+            color: #666;
+            font-weight: 500;
+        }
+
+        /* Menu Management */
+        .menu-section {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .section-header h3 {
+            font-size: 1.5rem;
+            color: #333;
+        }
+
+        .add-dish-btn {
+            background: #ff6b6b;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 25px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .add-dish-btn:hover {
+            background: #e55a5a;
+            transform: translateY(-2px);
+        }
+
+        .dish-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .dish-card {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .dish-card:hover {
+            border-color: #ff6b6b;
+            transform: translateY(-3px);
+        }
+
+        .dish-card h5 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .dish-card p {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+
+        .dish-status {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .status-toggle {
+            position: relative;
+            width: 50px;
+            height: 25px;
+            background: #ccc;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .status-toggle.active {
+            background: #28a745;
+        }
+
+        .status-toggle::after {
+            content: '';
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            width: 21px;
+            height: 21px;
+            background: white;
+            border-radius: 50%;
+            transition: transform 0.3s ease;
+        }
+
+        .status-toggle.active::after {
+            transform: translateX(25px);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .orders-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                transform: translateX(-100%);
+                transition: transform 0.3s ease;
+            }
+
+            .sidebar.open {
+                transform: translateX(0);
+            }
+
+            .main-content {
+                margin-left: 0;
+            }
+
+            .top-bar {
+                flex-direction: column;
+                gap: 20px;
+                text-align: center;
+            }
+
+            .kitchen-stats {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .back-to-dashboard {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            color: #333;
+            padding: 12px 25px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+        }
+
+        .back-to-dashboard:hover {
+            background: white;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <a href="../index.html" class="back-to-dashboard">
+        <i class="fas fa-arrow-left"></i> Volver al Dashboard
+    </a>
+
+    <div class="chef-container">
+        <!-- Sidebar -->
+        <nav class="sidebar">
+            <div class="sidebar-header">
+                <h2>👨‍🍳 Chef</h2>
+                <p>Cocina Central</p>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="#" class="nav-link active">
+                        <i class="fas fa-fire"></i>
+                        Pedidos Activos
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="fas fa-utensils"></i>
+                        Menú del Día
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="fas fa-boxes"></i>
+                        Inventario
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="fas fa-chart-bar"></i>
+                        Estadísticas
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="fas fa-cog"></i>
+                        Configuración
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="top-bar">
+                <div class="page-title">
+                    <h1>🔥 Cocina en Acción</h1>
+                    <p>Gestión de pedidos y control de calidad</p>
+                </div>
+                <div class="kitchen-status">
+                    <div class="status-indicator">
+                        <div class="status-dot"></div>
+                        <span>Cocina Activa</span>
+                    </div>
+                    <div class="status-indicator">
+                        <i class="fas fa-thermometer-half"></i>
+                        <span>Temp: 180°C</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Kitchen Stats -->
+            <div class="kitchen-stats">
+                <div class="stat-card">
+                    <h4 id="pendingOrders">12</h4>
+                    <p>Pedidos Pendientes</p>
+                </div>
+                <div class="stat-card">
+                    <h4 id="cookingOrders">8</h4>
+                    <p>En Preparación</p>
+                </div>
+                <div class="stat-card">
+                    <h4 id="readyOrders">15</h4>
+                    <p>Listos para Servir</p>
+                </div>
+                <div class="stat-card">
+                    <h4 id="avgTime">18</h4>
+                    <p>Min Promedio</p>
+                </div>
+            </div>
+
+            <!-- Active Orders -->
+            <div class="orders-grid">
+                <div class="order-card urgent">
+                    <div class="order-header">
+                        <div>
+                            <div class="order-number">#ORD-001</div>
+                            <div class="order-time">Hace 5 min</div>
+                        </div>
+                        <span class="order-priority priority-high">URGENTE</span>
+                    </div>
+                    
+                    <div class="order-items">
+                        <div class="order-item">
+                            <span class="item-name">Filete Premium</span>
+                            <span class="item-quantity">x2</span>
+                        </div>
+                        <div class="order-item">
+                            <span class="item-name">Langostinos al Ajillo</span>
+                            <span class="item-quantity">x1</span>
+                        </div>
+                        <div class="order-item">
+                            <span class="item-name">Ensalada César</span>
+                            <span class="item-quantity">x2</span>
+                        </div>
+                    </div>
+
+                    <div class="order-notes">
+                        <h5>📝 Notas Especiales:</h5>
+                        <p>Filete término medio, sin cebolla en la ensalada</p>
+                    </div>
+
+                    <div class="order-actions">
+                        <button class="btn btn-primary">Comenzar</button>
+                        <button class="btn btn-warning">Preguntar</button>
+                    </div>
+                </div>
+
+                <div class="order-card">
+                    <div class="order-header">
+                        <div>
+                            <div class="order-number">#ORD-002</div>
+                            <div class="order-time">Hace 8 min</div>
+                        </div>
+                        <span class="order-priority priority-normal">NORMAL</span>
+                    </div>
+                    
+                    <div class="order-items">
+                        <div class="order-item">
+                            <span class="item-name">Medallón de Res</span>
+                            <span class="item-quantity">x1</span>
+                        </div>
+                        <div class="order-item">
+                            <span class="item-name">Puré Trufado</span>
+                            <span class="item-quantity">x1</span>
+                        </div>
+                        <div class="order-item">
+                            <span class="item-name">Verduras Salteadas</span>
+                            <span class="item-quantity">x1</span>
+                        </div>
+                    </div>
+
+                    <div class="order-actions">
+                        <button class="btn btn-primary">Comenzar</button>
+                        <button class="btn btn-warning">Preguntar</button>
+                    </div>
+                </div>
+
+                <div class="order-card ready">
+                    <div class="order-header">
+                        <div>
+                            <div class="order-number">#ORD-003</div>
+                            <div class="order-time">Hace 15 min</div>
+                        </div>
+                        <span class="order-priority priority-normal">LISTO</span>
+                    </div>
+                    
+                    <div class="order-items">
+                        <div class="order-item">
+                            <span class="item-name">Pasta Carbonara</span>
+                            <span class="item-quantity">x2</span>
+                        </div>
+                        <div class="order-item">
+                            <span class="item-name">Tiramisú</span>
+                            <span class="item-quantity">x2</span>
+                        </div>
+                    </div>
+
+                    <div class="order-actions">
+                        <button class="btn btn-success">Marcar Listo</button>
+                        <button class="btn btn-warning">Ver Detalles</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Menu Management -->
+            <div class="menu-section">
+                <div class="section-header">
+                    <h3>🍽️ Menú del Día</h3>
+                    <button class="add-dish-btn">
+                        <i class="fas fa-plus"></i> Agregar Plato
+                    </button>
+                </div>
+                
+                <div class="dish-grid">
+                    <div class="dish-card">
+                        <h5>Filete Premium</h5>
+                        <p>Corte selecto con reducción de vino tinto</p>
+                        <div class="dish-status">
+                            <span>Disponible</span>
+                            <div class="status-toggle active"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="dish-card">
+                        <h5>Langostinos al Ajillo</h5>
+                        <p>Langostinos frescos en mantequilla de ajo</p>
+                        <div class="dish-status">
+                            <span>Disponible</span>
+                            <div class="status-toggle active"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="dish-card">
+                        <h5>Medallón de Res</h5>
+                        <p>Con salsa de vino tinto y puré trufado</p>
+                        <div class="dish-status">
+                            <span>Disponible</span>
+                            <div class="status-toggle active"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="dish-card">
+                        <h5>Pasta Carbonara</h5>
+                        <p>Pasta con huevo, queso y panceta</p>
+                        <div class="dish-status">
+                            <span>Agotado</span>
+                            <div class="status-toggle"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Simular datos en tiempo real
+        function updateKitchenStats() {
+            const pending = Math.floor(Math.random() * 20) + 5;
+            const cooking = Math.floor(Math.random() * 15) + 3;
+            const ready = Math.floor(Math.random() * 25) + 10;
+            const avgTime = Math.floor(Math.random() * 10) + 15;
+
+            document.getElementById('pendingOrders').textContent = pending;
+            document.getElementById('cookingOrders').textContent = cooking;
+            document.getElementById('readyOrders').textContent = ready;
+            document.getElementById('avgTime').textContent = avgTime;
+        }
+
+        // Actualizar estadísticas cada 30 segundos
+        updateKitchenStats();
+        setInterval(updateKitchenStats, 30000);
+
+        // Navegación activa
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+
+        // Toggle de estado de platos
+        document.querySelectorAll('.status-toggle').forEach(toggle => {
+            toggle.addEventListener('click', function() {
+                this.classList.toggle('active');
+                const statusText = this.previousElementSibling;
+                if (this.classList.contains('active')) {
+                    statusText.textContent = 'Disponible';
+                } else {
+                    statusText.textContent = 'Agotado';
+                }
+            });
+        });
+
+        // Botones de acción de pedidos
+        document.querySelectorAll('.btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const action = this.textContent;
+                const orderCard = this.closest('.order-card');
+                
+                if (action === 'Comenzar') {
+                    this.textContent = 'En Preparación';
+                    this.className = 'btn btn-warning';
+                    orderCard.classList.remove('urgent');
+                } else if (action === 'Marcar Listo') {
+                    this.textContent = 'Listo';
+                    this.className = 'btn btn-success';
+                    orderCard.classList.add('ready');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

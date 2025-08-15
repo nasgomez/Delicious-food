@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Admin - Delicious Food</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="./css/admin.css">
+</head>
+<body>
+    <a href="../index.html" class="back-to-dashboard">
+        <i class="fas fa-arrow-left"></i> Volver al Dashboard
+    </a>
+
+    <div class="admin-container">
+        <!-- Sidebar -->
+        <nav class="sidebar">
+            <div class="sidebar-header">
+                <h2>👨‍💼 Admin</h2>
+                <p>Panel de Control</p>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="#" class="nav-link active">
+                        <i class="fas fa-tachometer-alt"></i>
+                        Dashboard
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="fas fa-calendar-check"></i>
+                        Reservaciones
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="fas fa-utensils"></i>
+                        Menús
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="fas fa-users"></i>
+                        Empleados
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="fas fa-boxes"></i>
+                        Inventario
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="fas fa-chart-line"></i>
+                        Reportes
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="fas fa-cog"></i>
+                        Configuración
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="top-bar">
+                <div class="page-title">
+                    <h1>Dashboard Administrativo</h1>
+                    <p>Bienvenido al panel de control del restaurante</p>
+                </div>
+                <div class="user-info">
+                    <div class="user-avatar">
+                        A
+                    </div>
+                    <div class="user-details">
+                        <h4>Admin User</h4>
+                        <p>Administrador</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Actions -->
+            <div class="quick-actions">
+                <div class="action-card">
+                    <i class="fas fa-plus-circle"></i>
+                    <h4>Nueva Reservación</h4>
+                    <p>Crear reserva manual</p>
+                </div>
+                <div class="action-card">
+                    <i class="fas fa-edit"></i>
+                    <h4>Editar Menú</h4>
+                    <p>Modificar platos</p>
+                </div>
+                <div class="action-card">
+                    <i class="fas fa-user-plus"></i>
+                    <h4>Agregar Empleado</h4>
+                    <p>Nuevo personal</p>
+                </div>
+                <div class="action-card">
+                    <i class="fas fa-file-invoice"></i>
+                    <h4>Generar Reporte</h4>
+                    <p>Ventas del día</p>
+                </div>
+            </div>
+
+            <!-- Stats Grid -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <h4 id="totalRevenue">$8,450</h4>
+                    <p>Ingresos del Día</p>
+                    <div class="trend up">+12% vs ayer</div>
+                </div>
+                <div class="stat-card">
+                    <h4 id="totalOrders">156</h4>
+                    <p>Pedidos Totales</p>
+                    <div class="trend up">+8% vs ayer</div>
+                </div>
+                <div class="stat-card">
+                    <h4 id="activeReservations">23</h4>
+                    <p>Reservaciones Activas</p>
+                    <div class="trend down">-3% vs ayer</div>
+                </div>
+                <div class="stat-card">
+                    <h4 id="pendingDeliveries">7</h4>
+                    <p>Entregas Pendientes</p>
+                    <div class="trend up">+2 vs ayer</div>
+                </div>
+            </div>
+
+            <!-- Dashboard Grid -->
+            <div class="dashboard-grid">
+                <!-- Main Section -->
+                <div class="main-section">
+                    <div class="section-header">
+                        <h3>Reservaciones Recientes</h3>
+                        <a href="#" class="view-all">Ver todas</a>
+                    </div>
+                    <table class="reservations-table">
+                        <thead>
+                            <tr>
+                                <th>Cliente</th>
+                                <th>Fecha</th>
+                                <th>Hora</th>
+                                <th>Personas</th>
+                                <th>Estado</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>María González</td>
+                                <td>15 Ago 2025</td>
+                                <td>19:00</td>
+                                <td>4</td>
+                                <td><span class="status-badge status-confirmed">Confirmada</span></td>
+                                <td>
+                                    <button class="btn btn-sm btn-primary">Editar</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Carlos Rodríguez</td>
+                                <td>15 Ago 2025</td>
+                                <td>20:30</td>
+                                <td>2</td>
+                                <td><span class="status-badge status-pending">Pendiente</span></td>
+                                <td>
+                                    <button class="btn btn-sm btn-primary">Editar</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Ana Martínez</td>
+                                <td>16 Ago 2025</td>
+                                <td>18:00</td>
+                                <td>6</td>
+                                <td><span class="status-badge status-confirmed">Confirmada</span></td>
+                                <td>
+                                    <button class="btn btn-sm btn-primary">Editar</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Luis Pérez</td>
+                                <td>16 Ago 2025</td>
+                                <td>21:00</td>
+                                <td>3</td>
+                                <td><span class="status-badge status-pending">Pendiente</span></td>
+                                <td>
+                                    <button class="btn btn-sm btn-primary">Editar</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Sidebar Section -->
+                <div class="main-section">
+                    <div class="section-header">
+                        <h3>Actividad Reciente</h3>
+                    </div>
+                    <ul class="activity-list">
+                        <li class="activity-item">
+                            <div class="activity-icon">
+                                <i class="fas fa-calendar-check"></i>
+                            </div>
+                            <div class="activity-content">
+                                <h5>Nueva Reservación</h5>
+                                <p>María González - 4 personas</p>
+                            </div>
+                            <div class="activity-time">2 min</div>
+                        </li>
+                        <li class="activity-item">
+                            <div class="activity-icon">
+                                <i class="fas fa-utensils"></i>
+                            </div>
+                            <div class="activity-content">
+                                <h5>Menú Actualizado</h5>
+                                <p>Nuevo plato agregado</p>
+                            </div>
+                            <div class="activity-time">15 min</div>
+                        </li>
+                        <li class="activity-item">
+                            <div class="activity-icon">
+                                <i class="fas fa-user-plus"></i>
+                            </div>
+                            <div class="activity-content">
+                                <h5>Nuevo Empleado</h5>
+                                <p>Juan Carlos - Mesero</p>
+                            </div>
+                            <div class="activity-time">1 hora</div>
+                        </li>
+                        <li class="activity-item">
+                            <div class="activity-icon">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <div class="activity-content">
+                                <h5>Reporte Generado</h5>
+                                <p>Ventas del mes</p>
+                            </div>
+                            <div class="activity-time">2 horas</div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Simular datos en tiempo real
+        function updateStats() {
+            const revenue = Math.floor(Math.random() * 5000) + 5000;
+            const orders = Math.floor(Math.random() * 100) + 100;
+            const reservations = Math.floor(Math.random() * 30) + 15;
+            const deliveries = Math.floor(Math.random() * 15) + 5;
+
+            document.getElementById('totalRevenue').textContent = `$${revenue.toLocaleString()}`;
+            document.getElementById('totalOrders').textContent = orders;
+            document.getElementById('activeReservations').textContent = reservations;
+            document.getElementById('pendingDeliveries').textContent = deliveries;
+        }
+
+        // Actualizar estadísticas cada 30 segundos
+        updateStats();
+        setInterval(updateStats, 30000);
+
+        // Navegación activa
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+
+        // Acciones rápidas
+        document.querySelectorAll('.action-card').forEach(card => {
+            card.addEventListener('click', function() {
+                // Aquí puedes agregar la lógica para cada acción
+                console.log('Acción clickeada:', this.querySelector('h4').textContent);
+            });
+        });
+    </script>
+</body>
+</html>

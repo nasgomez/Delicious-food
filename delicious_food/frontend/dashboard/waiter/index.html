@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Mesero - Delias Food</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #f5f6fa;
+            color: #333;
+        }
+
+        .waiter-container {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 280px;
+            background: linear-gradient(135deg, #48dbfb 0%, #0abde3 100%);
+            color: white;
+            padding: 20px 0;
+            position: fixed;
+            height: 100vh;
+            overflow-y: auto;
+        }
+
+        .sidebar-header {
+            text-align: center;
+            padding: 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            margin-bottom: 20px;
+        }
+
+        .sidebar-header h2 {
+            font-size: 1.5rem;
+            margin-bottom: 5px;
+        }
+
+        .sidebar-header p {
+            opacity: 0.8;
+            font-size: 0.9rem;
+        }
+
+        .nav-menu {
+            list-style: none;
+            padding: 0 20px;
+        }
+
+        .nav-item {
+            margin-bottom: 10px;
+        }
+
+        .nav-link {
+            display: flex;
+            align-items: center;
+            padding: 15px 20px;
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateX(5px);
+        }
+
+        .nav-link i {
+            margin-right: 15px;
+            width: 20px;
+            text-align: center;
+        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            margin-left: 280px;
+            padding: 20px;
+        }
+
+        .top-bar {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .page-title h1 {
+            font-size: 2rem;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .page-title p {
+            color: #666;
+        }
+
+        .waiter-status {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .status-indicator {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 20px;
+            background: #f8f9fa;
+            border-radius: 25px;
+        }
+
+        .status-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #28a745;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+
+        /* Tables Grid */
+        .tables-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+
+        .table-card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            border-left: 4px solid #48dbfb;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .table-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .table-card.occupied {
+            border-left-color: #ff6b6b;
+        }
+
+        .table-card.ready {
+            border-left-color: #28a745;
+        }
+
+        .table-card.reserved {
+            border-left-color: #ffc107;
+        }
+
+        .table-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .table-number {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .table-status {
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .status-available {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .status-occupied {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        .status-ready {
+            background: #d1ecf1;
+            color: #0c5460;
+        }
+
+        .status-reserved {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .table-info {
+            margin-bottom: 20px;
+        }
+
+        .table-info p {
+            color: #666;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .table-info i {
+            color: #48dbfb;
+            width: 16px;
+        }
+
+        .table-actions {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+            flex: 1;
+            min-width: 120px;
+        }
+
+        .btn-primary {
+            background: #48dbfb;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #0abde3;
+            transform: translateY(-2px);
+        }
+
+        .btn-success {
+            background: #28a745;
+            color: white;
+        }
+
+        .btn-success:hover {
+            background: #218838;
+            transform: translateY(-2px);
+        }
+
+        .btn-warning {
+            background: #ffc107;
+            color: #333;
+        }
+
+        .btn-warning:hover {
+            background: #e0a800;
+            transform: translateY(-2px);
+        }
+
+        .btn-danger {
+            background: #dc3545;
+            color: white;
+        }
+
+        .btn-danger:hover {
+            background: #c82333;
+            transform: translateY(-2px);
+        }
+
+        /* Active Orders */
+        .orders-section {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .section-header h3 {
+            font-size: 1.5rem;
+            color: #333;
+        }
+
+        .new-order-btn {
+            background: #48dbfb;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 25px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .new-order-btn:hover {
+            background: #0abde3;
+            transform: translateY(-2px);
+        }
+
+        .orders-list {
+            display: grid;
+            gap: 20px;
+        }
+
+        .order-item {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+            border-left: 4px solid #48dbfb;
+        }
+
+        .order-item.urgent {
+            border-left-color: #dc3545;
+            background: linear-gradient(135deg, #fff5f5, #f8f9fa);
+        }
+
+        .order-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .order-number {
+            font-weight: 600;
+            color: #333;
+        }
+
+        .order-time {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .order-items {
+            margin-bottom: 15px;
+        }
+
+        .order-item-detail {
+            display: flex;
+            justify-content: space-between;
+            padding: 5px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .order-item-detail:last-child {
+            border-bottom: none;
+        }
+
+        .order-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        /* Quick Stats */
+        .quick-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #48dbfb, #0abde3);
+        }
+
+        .stat-card h4 {
+            font-size: 2.5rem;
+            color: #48dbfb;
+            margin-bottom: 10px;
+        }
+
+        .stat-card p {
+            color: #666;
+            font-weight: 500;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .tables-grid {
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            }
+        }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                transform: translateX(-100%);
+                transition: transform 0.3s ease;
+            }
+
+            .sidebar.open {
+                transform: translateX(0);
+            }
+
+            .main-content {
+                margin-left: 0;
+            }
+
+            .top-bar {
+                flex-direction: column;
+                gap: 20px;
+                text-align: center;
+            }
+
+            .quick-stats {
+                grid-template-columns: 1fr;
+            }
+
+            .table-actions {
+                flex-direction: column;
+            }
+
+            .btn {
+                min-width: auto;
+            }
+        }
+
+        .back-to-dashboard {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            color: #333;
+            padding: 12px 25px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+        }
+
+        .back-to-dashboard:hover {
+            background: white;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <a href="../index.html" class="back-to-dashboard">
+        <i class="fas fa-arrow-left"></i> Volver al Dashboard
+    </a>
+
+    <div class="waiter-container">
+        <!-- Sidebar -->
+        <nav class="sidebar">
+            <div class="sidebar-header">
+                <h2>🛎️ Mesero</h2>
+                <p>Atención al Cliente</p>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="#" class="nav-link active">
+                        <i class="fas fa-table"></i>
+                        Mesas
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="fas fa-list"></i>
+                        Pedidos
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="fas fa-calendar-check"></i>
+                        Reservaciones
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="fas fa-users"></i>
+                        Clientes
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="fas fa-chart-bar"></i>
+                        Reportes
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="top-bar">
+                <div class="page-title">
+                    <h1>🛎️ Gestión de Mesas</h1>
+                    <p>Control de mesas y atención al cliente</p>
+                </div>
+                <div class="waiter-status">
+                    <div class="status-indicator">
+                        <div class="status-dot"></div>
+                        <span>Disponible</span>
+                    </div>
+                    <div class="status-indicator">
+                        <i class="fas fa-clock"></i>
+                        <span>Turno: 8:00 - 16:00</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Stats -->
+            <div class="quick-stats">
+                <div class="stat-card">
+                    <h4 id="totalTables">12</h4>
+                    <p>Total de Mesas</p>
+                </div>
+                <div class="stat-card">
+                    <h4 id="occupiedTables">8</h4>
+                    <p>Mesas Ocupadas</p>
+                </div>
+                <div class="stat-card">
+                    <h4 id="availableTables">4</h4>
+                    <p>Mesas Disponibles</p>
+                </div>
+                <div class="stat-card">
+                    <h4 id="pendingOrders">5</h4>
+                    <p>Pedidos Pendientes</p>
+                </div>
+            </div>
+
+            <!-- Tables Grid -->
+            <div class="tables-grid">
+                <!-- Mesa 1 - Disponible -->
+                <div class="table-card">
+                    <div class="table-header">
+                        <div class="table-number">Mesa 1</div>
+                        <span class="table-status status-available">Disponible</span>
+                    </div>
+                    <div class="table-info">
+                        <p><i class="fas fa-users"></i> Capacidad: 4 personas</p>
+                        <p><i class="fas fa-map-marker-alt"></i> Ubicación: Terraza</p>
+                        <p><i class="fas fa-clock"></i> Última limpieza: 10 min</p>
+                    </div>
+                    <div class="table-actions">
+                        <button class="btn btn-primary">Asignar Cliente</button>
+                        <button class="btn btn-warning">Reservar</button>
+                    </div>
+                </div>
+
+                <!-- Mesa 2 - Ocupada -->
+                <div class="table-card occupied">
+                    <div class="table-header">
+                        <div class="table-number">Mesa 2</div>
+                        <span class="table-status status-occupied">Ocupada</span>
+                    </div>
+                    <div class="table-info">
+                        <p><i class="fas fa-users"></i> Cliente: Familia Rodríguez</p>
+                        <p><i class="fas fa-clock"></i> Tiempo: 45 min</p>
+                        <p><i class="fas fa-utensils"></i> Pedido: #ORD-001</p>
+                    </div>
+                    <div class="table-actions">
+                        <button class="btn btn-success">Ver Pedido</button>
+                        <button class="btn btn-warning">Agregar</button>
+                        <button class="btn btn-danger">Cerrar Mesa</button>
+                    </div>
+                </div>
+
+                <!-- Mesa 3 - Lista para Servir -->
+                <div class="table-card ready">
+                    <div class="table-header">
+                        <div class="table-number">Mesa 3</div>
+                        <span class="table-status status-ready">Lista</span>
+                    </div>
+                    <div class="table-info">
+                        <p><i class="fas fa-users"></i> Cliente: Pareja Martínez</p>
+                        <p><i class="fas fa-clock"></i> Tiempo: 25 min</p>
+                        <p><i class="fas fa-check-circle"></i> Pedido: Listo</p>
+                    </div>
+                    <div class="table-actions">
+                        <button class="btn btn-success">Servir</button>
+                        <button class="btn btn-warning">Ver Detalles</button>
+                    </div>
+                </div>
+
+                <!-- Mesa 4 - Reservada -->
+                <div class="table-card reserved">
+                    <div class="table-header">
+                        <div class="table-number">Mesa 4</div>
+                        <span class="table-status status-reserved">Reservada</span>
+                    </div>
+                    <div class="table-info">
+                        <p><i class="fas fa-users"></i> Cliente: Sr. Pérez</p>
+                        <p><i class="fas fa-clock"></i> Hora: 20:00</p>
+                        <p><i class="fas fa-calendar"></i> Fecha: Hoy</p>
+                    </div>
+                    <div class="table-actions">
+                        <button class="btn btn-primary">Confirmar Llegada</button>
+                        <button class="btn btn-warning">Modificar</button>
+                    </div>
+                </div>
+
+                <!-- Mesa 5 - Disponible -->
+                <div class="table-card">
+                    <div class="table-header">
+                        <div class="table-number">Mesa 5</div>
+                        <span class="table-status status-available">Disponible</span>
+                    </div>
+                    <div class="table-info">
+                        <p><i class="fas fa-users"></i> Capacidad: 6 personas</p>
+                        <p><i class="fas fa-map-marker-alt"></i> Ubicación: Interior</p>
+                        <p><i class="fas fa-clock"></i> Última limpieza: 15 min</p>
+                    </div>
+                    <div class="table-actions">
+                        <button class="btn btn-primary">Asignar Cliente</button>
+                        <button class="btn btn-warning">Reservar</button>
+                    </div>
+                </div>
+
+                <!-- Mesa 6 - Ocupada -->
+                <div class="table-card occupied">
+                    <div class="table-header">
+                        <div class="table-number">Mesa 6</div>
+                        <span class="table-status status-occupied">Ocupada</span>
+                    </div>
+                    <div class="table-info">
+                        <p><i class="fas fa-users"></i> Cliente: Grupo Empresarial</p>
+                        <p><i class="fas fa-clock"></i> Tiempo: 1h 20 min</p>
+                        <p><i class="fas fa-utensils"></i> Pedido: #ORD-003</p>
+                    </div>
+                    <div class="table-actions">
+                        <button class="btn btn-success">Ver Pedido</button>
+                        <button class="btn btn-warning">Agregar</button>
+                        <button class="btn btn-danger">Cerrar Mesa</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Active Orders -->
+            <div class="orders-section">
+                <div class="section-header">
+                    <h3>📋 Pedidos Activos</h3>
+                    <button class="new-order-btn">
+                        <i class="fas fa-plus"></i> Nuevo Pedido
+                    </button>
+                </div>
+                
+                <div class="orders-list">
+                    <div class="order-item urgent">
+                        <div class="order-header">
+                            <span class="order-number">#ORD-001 - Mesa 2</span>
+                            <span class="order-time">Hace 45 min</span>
+                        </div>
+                        <div class="order-items">
+                            <div class="order-item-detail">
+                                <span>Filete Premium x2</span>
+                                <span>$45.00</span>
+                            </div>
+                            <div class="order-item-detail">
+                                <span>Langostinos al Ajillo x1</span>
+                                <span>$28.00</span>
+                            </div>
+                            <div class="order-item-detail">
+                                <span>Ensalada César x2</span>
+                                <span>$16.00</span>
+                            </div>
+                        </div>
+                        <div class="order-actions">
+                            <button class="btn btn-success">Marcar Listo</button>
+                            <button class="btn btn-warning">Modificar</button>
+                        </div>
+                    </div>
+
+                    <div class="order-item">
+                        <div class="order-header">
+                            <span class="order-number">#ORD-003 - Mesa 6</span>
+                            <span class="order-time">Hace 1h 20 min</span>
+                        </div>
+                        <div class="order-items">
+                            <div class="order-item-detail">
+                                <span>Medallón de Res x3</span>
+                                <span>$78.00</span>
+                            </div>
+                            <div class="order-item-detail">
+                                <span>Puré Trufado x3</span>
+                                <span>$24.00</span>
+                            </div>
+                            <div class="order-item-detail">
+                                <span>Vino Tinto x2</span>
+                                <span>$32.00</span>
+                            </div>
+                        </div>
+                        <div class="order-actions">
+                            <button class="btn btn-success">Marcar Listo</button>
+                            <button class="btn btn-warning">Modificar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Simular datos en tiempo real
+        function updateStats() {
+            const total = 12;
+            const occupied = Math.floor(Math.random() * 10) + 5;
+            const available = total - occupied;
+            const pending = Math.floor(Math.random() * 8) + 2;
+
+            document.getElementById('totalTables').textContent = total;
+            document.getElementById('occupiedTables').textContent = occupied;
+            document.getElementById('availableTables').textContent = available;
+            document.getElementById('pendingOrders').textContent = pending;
+        }
+
+        // Actualizar estadísticas cada 30 segundos
+        updateStats();
+        setInterval(updateStats, 30000);
+
+        // Navegación activa
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+
+        // Botones de acción de mesas
+        document.querySelectorAll('.btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const action = this.textContent;
+                const tableCard = this.closest('.table-card');
+                
+                if (action === 'Asignar Cliente') {
+                    // Simular asignación de cliente
+                    this.textContent = 'Cliente Asignado';
+                    this.className = 'btn btn-success';
+                    tableCard.classList.add('occupied');
+                    tableCard.querySelector('.table-status').textContent = 'Ocupada';
+                    tableCard.querySelector('.table-status').className = 'table-status status-occupied';
+                } else if (action === 'Cerrar Mesa') {
+                    // Simular cierre de mesa
+                    this.textContent = 'Mesa Cerrada';
+                    this.className = 'btn btn-primary';
+                    tableCard.classList.remove('occupied');
+                    tableCard.querySelector('.table-status').textContent = 'Disponible';
+                    tableCard.querySelector('.table-status').className = 'table-status status-available';
+                }
+            });
+        });
+
+        // Simular actualización de tiempo en mesas ocupadas
+        setInterval(() => {
+            const occupiedTables = document.querySelectorAll('.table-card.occupied');
+            occupiedTables.forEach(table => {
+                const timeElement = table.querySelector('.table-info p:nth-child(2)');
+                if (timeElement) {
+                    const currentText = timeElement.textContent;
+                    const timeMatch = currentText.match(/(\d+) min/);
+                    if (timeMatch) {
+                        const currentTime = parseInt(timeMatch[1]);
+                        timeElement.innerHTML = `<i class="fas fa-clock"></i> Tiempo: ${currentTime + 1} min`;
+                    }
+                }
+            });
+        }, 60000); // Actualizar cada minuto
+    </script>
+</body>
+</html>
